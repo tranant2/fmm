@@ -1,0 +1,8 @@
+[
+  {
+    "directory": "/Users/anthonytran/fmm/builddir",
+    "command": "c++ -Isrc/fmm.p -Isrc -I../src -Iinclude -I../include -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -MD -MQ src/fmm.p/fmm.cpp.o -MF src/fmm.p/fmm.cpp.o.d -o src/fmm.p/fmm.cpp.o -c ../src/fmm.cpp",
+    "file": "../src/fmm.cpp",
+    "output": "src/fmm.p/fmm.cpp.o"
+  }
+]
