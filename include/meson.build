@@ -1,1 +1,2 @@
-install_headers('fmm.h')
+head = ['Cell.hpp','quadtree.h']
+install_headers(head)
