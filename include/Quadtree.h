@@ -1,7 +1,7 @@
 #ifndef QUAD_TREE
 #define QUAD_TREE
 
-#include "Cell.hpp"
+#include "QTNode.hpp"
 #include <iostream>
 #include <vector>
 #include <cmath>

@@ -1,4 +1,4 @@
-#include "Cell.hpp"
+#include "QTNode.hpp"
 #include "Quadtree.h"
 #include <iostream>
 #include <vector>
@@ -18,8 +18,8 @@ void * getData(std::vector<double> &p){
   const int nrolls=1000;  // number of experiments
   const int npoints=10;    // maximum number of stars to distribute
 
-  default_random_engine generator;
-  normal_distribution<double> distribution(MU, SIGMA);
+  std::default_random_engine generator;
+  std::normal_distribution<double> distribution(MU, SIGMA);
 
   for (int i=0; i<nrolls; ++i) {
     double number = distribution(generator);
@@ -39,7 +39,7 @@ int main()
     getData(x);  // Get normal distributions of points of charges around 0,0
     getData(y);
     for (double n : x){
-      std::cout << n << endl;
+      std::cout << n << std::endl;
     }
 
     return 0;
