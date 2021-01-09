@@ -43,6 +43,7 @@ class QTNode {
     QTNode* q2;
     QTNode* q3;
     QTNode* q4;
+    QTNode* parent:
     std::vector<CPoint*> data;
 
     /** Constructor */
