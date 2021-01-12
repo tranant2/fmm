@@ -27,6 +27,9 @@ class Quadtree {
     // Number of Data items stored in this QT.
     unsigned int isize;
 
+    // Number of notes stored in this QT.
+    unsigned int inode;
+
     // Height of this QT.
     int iheight;
 
@@ -51,7 +54,7 @@ class Quadtree {
                                 int depth);
 
     /** Copy Constructor */
-    Quadtree(const Quadtree& bst);
+    Quadtree(const Quadtree&);
 
     /** Deconstructor to delete all nodes */
     ~Quadtree();
@@ -68,6 +71,9 @@ class Quadtree {
 
     /** Return isize */
     unsigned int size() const { return isize; }
+
+    /** Return isize */
+    unsigned int numNode() const { return inode; }
 
     /** Return isize */
     QTNode* getRoot() const { return root; }
@@ -92,6 +98,10 @@ class Quadtree {
   private:
     /** Delete all nodes recuersively */
     static void deleteAll(QTNode* n);
+
+    /** Split data into 4 */
+    void splitdata(std::vector<CPoint*> data, std::vector<CPoint*> &data1,std::vector<CPoint*> &data2,
+    std::vector<CPoint*> &data3,std::vector<CPoint*> &data4, double xmid, double ymid);
 
     /** Recursively build subtree*/
     QTNode* buildSubtree(std::vector<CPoint*> &data, double xmin, double xmax, double ymin, double ymax,

@@ -61,6 +61,17 @@ class QTNode {
         parent = nullptr;
     }
 
+    /** Constructor 2*/
+    QTNode(const std::vector<CPoint*>& d, const double& x0,const double& x1,
+     const double& y0, const double& y1, const int& l) : 
+    data(d), level(l), xmin(x0), xmax(x1), ymin(y0), ymax(y1) {
+        q1 = nullptr;
+        q2 = nullptr;
+        q3 = nullptr;
+        q4 = nullptr;
+        parent = nullptr;
+    }
+
     /** Set the value of level */
     void setLevel(const int& d) { level = d; }
 
