@@ -77,18 +77,24 @@ class QTNode {
     bool is_same_level(QTNode* node){
         //TODO check if same level
         //check is on the same level
+        (void)node;
+        return false;
     }
 
     /** Return true is node is this node nearest neighbor*/
     bool is_near_neighbor(QTNode* node){
         //TODO check if same level
         //check is nearest neighbor
+        (void)node;
+        return false;
     }
 
     /** Return true is node is this node is well separated*/
     bool is_well_separated(QTNode* node){
         //TODO check if same level
         //check if well separated
+        (void)node;
+        return false;
     }
 };
 

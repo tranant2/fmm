@@ -69,6 +69,9 @@ class Quadtree {
     /** Return isize */
     unsigned int size() const { return isize; }
 
+    /** Return isize */
+    QTNode* getRoot() const { return root; }
+
     /** Return iheight */
     int height() const { return iheight; }
 

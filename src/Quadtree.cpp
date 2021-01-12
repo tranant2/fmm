@@ -2,6 +2,9 @@
 
 void data_to_cpoint(double &x, double &y, std::vector<CPoint> &points){
   //TODO
+  (void)x;
+  (void)y;
+  (void)points;
 }
   
 /**
@@ -11,13 +14,8 @@ void data_to_cpoint(double &x, double &y, std::vector<CPoint> &points){
  */
 Quadtree::Quadtree(std::vector<CPoint*> &data, double xmin, double xmax, double ymin, double ymax,
                             int depth) : root(0), isize(0), iheight(-1) {
-    root = buildSubtree(data, xmin, xmax, ymin, ymax, 0);
     idepth = depth;
-}
-
-/** Copy Constructor */
-Quadtree::Quadtree(const Quadtree& bst) : root(0), isize(0), iheight(-1) {
-    //TODO
+    root = buildSubtree(data, xmin, xmax, ymin, ymax, 0);
 }
 
 /** Deconstructor to delete all nodes */
@@ -27,6 +25,9 @@ Quadtree::~Quadtree() { this->deleteAll(root); }
  * into the QT. Else return false.
  */
 bool Quadtree::insert(const CPoint& point) {
+    //TODO
+    (void)point;
+    return false;
 }
 
 /** Return a vector of points
@@ -34,6 +35,8 @@ bool Quadtree::insert(const CPoint& point) {
  */
 bool Quadtree::getData(std::vector<CPoint*> &data) {
     //TODO: use recursion
+    (void)data;
+    return false;
 }
 
 /** Return iterator with first element of QT
@@ -54,13 +57,13 @@ void Quadtree::deleteAll(QTNode* n) {
         deleteAll(n->q1);
     }
     if (n->q2 != nullptr) {
-        deleteAll(n->q1);
+        deleteAll(n->q2);
     }
     if (n->q3 != nullptr) {
-        deleteAll(n->q1);
+        deleteAll(n->q3);
     }
     if (n->q4 != nullptr) {
-        deleteAll(n->q1);
+        deleteAll(n->q4);
     }
     delete n;
     /* Pseudocode:
@@ -94,7 +97,7 @@ QTNode* Quadtree::buildSubtree(std::vector<CPoint*> &data, double xmin, double x
     std::vector<CPoint*> data4;
     double xmid = (xmin+xmax)/2;
     double ymid = (ymin+ymax)/2;
-    while (data.empty()){  //while there are still points left
+    while (!data.empty()){  //while there are still points left
         CPoint* point = data.back();  //copy point
         data.pop_back();  //remove point
         double x = point->x;
@@ -103,18 +106,21 @@ QTNode* Quadtree::buildSubtree(std::vector<CPoint*> &data, double xmin, double x
             if(y > ymid){  //split points along y
                 data1.push_back(point);
             } else {
-            data4.push_back(point);
+                data4.push_back(point);
             }
         } else {
             if(y > ymid){
                 data2.push_back(point);
             } else {
-            data3.push_back(point);
+                data3.push_back(point);
             }
         }
     }
     QTNode* curr = new QTNode(xmin, xmax, ymin, ymax, depth);
-    if (depth = idepth - 1){  //if depth < log4(N) or reach desired depth, store data
+    std::cout << depth << std::endl;
+    std::cout << idepth << std::endl;
+
+    if (depth == idepth - 1){  //if depth < log4(N) or reach desired depth, store data
         QTNode* curr1 = new QTNode(xmid, xmax, ymid, ymax, depth + 1);
         QTNode* curr2 = new QTNode(xmin, xmid, ymid, ymax, depth + 1);
         QTNode* curr3 = new QTNode(xmin, xmid, ymin, ymid, depth + 1);
@@ -123,6 +129,10 @@ QTNode* Quadtree::buildSubtree(std::vector<CPoint*> &data, double xmin, double x
         curr2->setData(data2);
         curr3->setData(data3);
         curr4->setData(data4);
+        isize += data1.size();
+        isize += data2.size();
+        isize += data3.size();
+        isize += data4.size();
         if (depth+1 > iheight){  //set tree height
             iheight = depth + 1;
         }
@@ -134,6 +144,7 @@ QTNode* Quadtree::buildSubtree(std::vector<CPoint*> &data, double xmin, double x
         curr->q2->parent = curr;
         curr->q3->parent = curr;
         curr->q4->parent = curr;
+        std::cout << "End tree" << std::endl;
         return curr;
     }  
     curr->q1 = buildSubtree(data1, xmid, xmax, ymid, ymax, depth + 1);  //connect parent to its children
@@ -150,4 +161,7 @@ QTNode* Quadtree::buildSubtree(std::vector<CPoint*> &data, double xmin, double x
 /** Get height recuersively */
 int Quadtree::getHeight(QTNode* n, int depth) {
     //TODO
+    (void)n;
+    (void)depth;
+    return 0;
 }

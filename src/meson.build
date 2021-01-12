@@ -6,5 +6,5 @@ tree_dep = declare_dependency(include_directories: inc,
 
 fmm = executable('fmm', 
     sources : ['main.cpp'],
-    dependencies: [tree_dep],
+    dependencies : [tree_dep],
     install : true)
