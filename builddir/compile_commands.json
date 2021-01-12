@@ -1,14 +1,14 @@
 [
   {
     "directory": "/Users/anthonytran/fmm/builddir",
-    "command": "c++ -Isrc/fmm.p -Isrc -I../src -Iinclude -I../include -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -MD -MQ src/fmm.p/main.cpp.o -MF src/fmm.p/main.cpp.o.d -o src/fmm.p/main.cpp.o -c ../src/main.cpp",
-    "file": "../src/main.cpp",
-    "output": "src/fmm.p/main.cpp.o"
+    "command": "c++ -Isrc/libnode.dylib.p -Isrc -I../src -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -MD -MQ src/libnode.dylib.p/Quadtree.cpp.o -MF src/libnode.dylib.p/Quadtree.cpp.o.d -o src/libnode.dylib.p/Quadtree.cpp.o -c ../src/Quadtree.cpp",
+    "file": "../src/Quadtree.cpp",
+    "output": "src/libnode.dylib.p/Quadtree.cpp.o"
   },
   {
     "directory": "/Users/anthonytran/fmm/builddir",
-    "command": "c++ -Isrc/fmm.p -Isrc -I../src -Iinclude -I../include -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -MD -MQ src/fmm.p/Quadtree.cpp.o -MF src/fmm.p/Quadtree.cpp.o.d -o src/fmm.p/Quadtree.cpp.o -c ../src/Quadtree.cpp",
-    "file": "../src/Quadtree.cpp",
-    "output": "src/fmm.p/Quadtree.cpp.o"
+    "command": "c++ -Isrc/fmm.p -Isrc -I../src -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -MD -MQ src/fmm.p/main.cpp.o -MF src/fmm.p/main.cpp.o.d -o src/fmm.p/main.cpp.o -c ../src/main.cpp",
+    "file": "../src/main.cpp",
+    "output": "src/fmm.p/main.cpp.o"
   }
 ]

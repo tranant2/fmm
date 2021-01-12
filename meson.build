@@ -4,8 +4,6 @@ project('fmm', 'cpp',
                      'b_coverage=true',
                      'cpp_std=c++14'])
 
-inc = include_directories('include')
-subdir('include')
 subdir('src')
 
 # === custom commands ===

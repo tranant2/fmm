@@ -18,6 +18,11 @@ rule cpp_LINKER
  command = c++ $ARGS -o $out $in $LINK_ARGS
  description = Linking target $out
 
+rule SHSYM
+ command = /Users/anthonytran/miniconda3/bin/meson --internal symbolextractor /Users/anthonytran/fmm/builddir $in $IMPLIB $out $CROSS
+ description = Generating symbol file $out
+ restat = 1
+
 # Other rules
 
 rule CUSTOM_COMMAND
@@ -36,18 +41,24 @@ build PHONY: phony
 
 # Build rules for targets
 
+build src/libnode.dylib.p/Quadtree.cpp.o: cpp_COMPILER ../src/Quadtree.cpp
+ DEPFILE = src/libnode.dylib.p/Quadtree.cpp.o.d
+ DEPFILE_UNQUOTED = src/libnode.dylib.p/Quadtree.cpp.o.d
+ ARGS = -Isrc/libnode.dylib.p -Isrc -I../src -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g
+
+build src/libnode.dylib.p/libnode.dylib.symbols: SHSYM src/libnode.dylib
+ IMPLIB = src/libnode.dylib
+
+build src/libnode.dylib: cpp_LINKER src/libnode.dylib.p/Quadtree.cpp.o
+ LINK_ARGS = --coverage -Wl,-dead_strip_dylibs -Wl,-headerpad_max_install_names -Wl,-undefined,error -shared -install_name @rpath/libnode.dylib
+
 build src/fmm.p/main.cpp.o: cpp_COMPILER ../src/main.cpp
  DEPFILE = src/fmm.p/main.cpp.o.d
  DEPFILE_UNQUOTED = src/fmm.p/main.cpp.o.d
- ARGS = -Isrc/fmm.p -Isrc -I../src -Iinclude -I../include -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g
+ ARGS = -Isrc/fmm.p -Isrc -I../src -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g
 
-build src/fmm.p/Quadtree.cpp.o: cpp_COMPILER ../src/Quadtree.cpp
- DEPFILE = src/fmm.p/Quadtree.cpp.o.d
- DEPFILE_UNQUOTED = src/fmm.p/Quadtree.cpp.o.d
- ARGS = -Isrc/fmm.p -Isrc -I../src -Iinclude -I../include -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g
-
-build src/fmm: cpp_LINKER src/fmm.p/main.cpp.o src/fmm.p/Quadtree.cpp.o
- LINK_ARGS = --coverage -Wl,-dead_strip_dylibs -Wl,-headerpad_max_install_names -Wl,-undefined,error
+build src/fmm: cpp_LINKER src/fmm.p/main.cpp.o | src/libnode.dylib.p/libnode.dylib.symbols
+ LINK_ARGS = --coverage -Wl,-dead_strip_dylibs -Wl,-headerpad_max_install_names -Wl,-undefined,error src/libnode.dylib -Wl,-rpath,@loader_path/
 
 build cov: phony meson-cov
 
@@ -142,7 +153,7 @@ build meson-uninstall: CUSTOM_COMMAND PHONY
 
 build uninstall: phony meson-uninstall
 
-build all: phony src/fmm
+build all: phony src/libnode.dylib src/fmm
 
 build clean: phony meson-clean
 
@@ -162,13 +173,13 @@ build meson-clean: CUSTOM_COMMAND PHONY | clean-gcda clean-gcno
  COMMAND = /usr/local/bin/ninja -t clean
  description = Cleaning
 
-build build.ninja: REGENERATE_BUILD ../meson.build ../include/meson.build ../src/meson.build meson-private/coredata.dat
+build build.ninja: REGENERATE_BUILD ../meson.build ../src/meson.build meson-private/coredata.dat
  pool = console
 
 build reconfigure: REGENERATE_BUILD PHONY
  pool = console
 
-build ../meson.build ../include/meson.build ../src/meson.build meson-private/coredata.dat: phony 
+build ../meson.build ../src/meson.build meson-private/coredata.dat: phony 
 
 default all
 
