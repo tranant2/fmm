@@ -41,12 +41,12 @@ build src/fmm.p/main.cpp.o: cpp_COMPILER ../src/main.cpp
  DEPFILE_UNQUOTED = src/fmm.p/main.cpp.o.d
  ARGS = -Isrc/fmm.p -Isrc -I../src -Iinclude -I../include -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g
 
-build src/fmm.p/quadtree.cpp.o: cpp_COMPILER ../src/quadtree.cpp
- DEPFILE = src/fmm.p/quadtree.cpp.o.d
- DEPFILE_UNQUOTED = src/fmm.p/quadtree.cpp.o.d
+build src/fmm.p/Quadtree.cpp.o: cpp_COMPILER ../src/Quadtree.cpp
+ DEPFILE = src/fmm.p/Quadtree.cpp.o.d
+ DEPFILE_UNQUOTED = src/fmm.p/Quadtree.cpp.o.d
  ARGS = -Isrc/fmm.p -Isrc -I../src -Iinclude -I../include -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g
 
-build src/fmm: cpp_LINKER src/fmm.p/main.cpp.o src/fmm.p/quadtree.cpp.o
+build src/fmm: cpp_LINKER src/fmm.p/main.cpp.o src/fmm.p/Quadtree.cpp.o
  LINK_ARGS = --coverage -Wl,-dead_strip_dylibs -Wl,-headerpad_max_install_names -Wl,-undefined,error
 
 build cov: phony meson-cov

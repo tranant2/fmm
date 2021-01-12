@@ -7,8 +7,8 @@
   },
   {
     "directory": "/Users/anthonytran/fmm/builddir",
-    "command": "c++ -Isrc/fmm.p -Isrc -I../src -Iinclude -I../include -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -MD -MQ src/fmm.p/quadtree.cpp.o -MF src/fmm.p/quadtree.cpp.o.d -o src/fmm.p/quadtree.cpp.o -c ../src/quadtree.cpp",
-    "file": "../src/quadtree.cpp",
-    "output": "src/fmm.p/quadtree.cpp.o"
+    "command": "c++ -Isrc/fmm.p -Isrc -I../src -Iinclude -I../include -Xclang -fcolor-diagnostics --coverage -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -MD -MQ src/fmm.p/Quadtree.cpp.o -MF src/fmm.p/Quadtree.cpp.o.d -o src/fmm.p/Quadtree.cpp.o -c ../src/Quadtree.cpp",
+    "file": "../src/Quadtree.cpp",
+    "output": "src/fmm.p/Quadtree.cpp.o"
   }
 ]

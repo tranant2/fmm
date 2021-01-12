@@ -1,2 +1,2 @@
-head = ['Cell.hpp','quadtree.h']
+head = ['Quadtree.h','QTNode.hpp']
 install_headers(head)

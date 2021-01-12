@@ -43,22 +43,35 @@ class QTNode {
     QTNode* q2;
     QTNode* q3;
     QTNode* q4;
-    QTNode* parent:
+    QTNode* parent;
+    double xmin;
+    double xmax;
+    double ymin;
+    double ymax;
     std::vector<CPoint*> data;
 
     /** Constructor */
-    QTNode(const int& d) : level(d) {
+    QTNode(const double& x0,const double& x1,
+     const double& y0, const double& y1, const int& d) : 
+    level(d), xmin(x0), xmax(x1), ymin(y0), ymax(y1) {
         q1 = nullptr;
         q2 = nullptr;
         q3 = nullptr;
         q4 = nullptr;
+        parent = nullptr;
     }
 
-    /** Set the value of data */
+    /** Set the value of level */
     void setLevel(const int& d) { level = d; }
 
     /** Get the value of level */
-    int getData() { return level; }
+    int getLevel() { return level; }
+
+    /** Set the values of data */
+    void setData(std::vector<CPoint*> &d) { data = d; }
+
+    /** Get the values of data */
+    std::vector<CPoint*> getData() { return data; }
 
     /** Return true is node is on the same level*/
     bool is_same_level(QTNode* node){

@@ -41,6 +41,20 @@ int main()
     for (double n : x){
       std::cout << n << std::endl;
     }
-
+    std::vector<CPoint*> data1;
+    Quadtree tree1 = Quadtree(data1,-1,1,-1,1,0);
+    std::cout << "start test" << std::endl;
+    std::cout << tree1.empty() << std::endl;
+    std::cout << "end test" << std::endl;
+    
+    CPoint p1 {.5,.5,1};
+    CPoint p2 {-.5,.5,1};
+    CPoint p3 {.5,-.5,1};
+    CPoint p4 {-.5,-.5,1};
+    std::vector<CPoint*> data = {&p1,&p2,&p3,&p4};
+    Quadtree tree = Quadtree(data,-1,1,-1,1,0);
+    std::cout << "start test" << std::endl;
+    std::cout << tree.empty() << std::endl;
+    std::cout << "end test" << std::endl;
     return 0;
 }
