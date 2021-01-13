@@ -92,7 +92,10 @@ class QTNode {
         return false;
     }
 
-    /** Return true is node is this node nearest neighbor*/
+    /** Return true is node is this node nearest neighbor.
+     * Two nodes are said to be near neighbours if they are at the same refinement 
+     * level and share a boundary point. (A box is a near neighbour of itself.)
+    */
     bool is_near_neighbor(QTNode* node){
         //TODO check if same level
         //check is nearest neighbor
@@ -100,7 +103,10 @@ class QTNode {
         return false;
     }
 
-    /** Return true is node is this node is well separated*/
+    /** Return true is node is this node is well separated.
+     * Two nodes are said to be well separated if they are 
+     * at the same refinement level and are not near neighbours.
+    */
     bool is_well_separated(QTNode* node){
         //TODO check if same level
         //check if well separated

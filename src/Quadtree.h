@@ -7,6 +7,8 @@
 #include <cmath>
 #include <complex>
 #include <random>
+#include <stack>
+#include <queue>
 
 /* Convert data into cpoint objects
 */
@@ -69,6 +71,10 @@ class Quadtree {
      */
     bool getData(std::vector<CPoint*> &data);
 
+    /** Do some calculations to get interaction list*/
+    bool get_interaction_list(int level, int x, int col, std::vector<QTNode> &data);
+
+
     /** Return isize */
     unsigned int size() const { return isize; }
 
@@ -94,6 +100,9 @@ class Quadtree {
 
     /** Return an iterator pointing past the last item in the BST.
     iterator end() const { return QT::iterator(0); } */
+
+    /**Turn tree into a matrix of QTNode pointers*/
+    void tree_to_matrix();
 
   private:
     /** Delete all nodes recuersively */

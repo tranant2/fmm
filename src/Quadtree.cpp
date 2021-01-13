@@ -1,5 +1,6 @@
 #include "Quadtree.h"
 
+
 void data_to_cpoint(double &x, double &y, std::vector<CPoint> &points){
   //TODO
   (void)x;
@@ -131,8 +132,6 @@ QTNode* Quadtree::buildSubtree(std::vector<CPoint*> &data, double xmin, double x
 
     QTNode* curr = new QTNode(xmin, xmax, ymin, ymax, depth);
 
-    std::cout << "depth: "<< depth << std::endl;
-    std::cout << "node: "<< inode << std::endl;
     if (depth == idepth - 1){  //if depth < log4(N) or reach desired depth, store data
         QTNode* curr1 = new QTNode(data1, xmid, xmax, ymid, ymax, depth + 1);
         QTNode* curr2 = new QTNode(data2, xmin, xmid, ymid, ymax, depth + 1);
@@ -154,7 +153,6 @@ QTNode* Quadtree::buildSubtree(std::vector<CPoint*> &data, double xmin, double x
         curr->q2->parent = curr;
         curr->q3->parent = curr;
         curr->q4->parent = curr;
-        std::cout << "reached child" << std::endl;
         return curr;
     }  
     curr->q1 = buildSubtree(data1, xmid, xmax, ymid, ymax, depth + 1);  //connect parent to its children
@@ -171,6 +169,51 @@ QTNode* Quadtree::buildSubtree(std::vector<CPoint*> &data, double xmin, double x
     }
     return curr;
 }
+
+/** Do some calculations to get interaction list*/
+bool Quadtree::get_interaction_list(int level, int x, int col, std::vector<QTNode> &data){
+    return false;
+}
+
+/**Turn tree into a matrix of QTNode pointers or ease of access
+ * 1. put all pointers level by level into a stack
+ * 2. take nodes from each level out and put them into a matrix
+*/
+void Quadtree::tree_to_matrix(){
+    double ymin = root->ymin;
+    double xmin = root->xmax;
+
+    std::queue<QTNode*> bfs_queue;
+    std::stack<QTNode*> iter_stack;
+    bfs_queue.push(root);
+    while (!bfs_queue.empty()){  //bfs algorithm to order nodes by level
+        QTNode* curr = bfs_queue.front();
+        bfs_queue.pop();
+        iter_stack.push(curr);
+        if (curr->q1 != nullptr){
+            bfs_queue.push(curr->q1);
+        }
+        if (curr->q2 != nullptr){
+            bfs_queue.push(curr->q2);
+        }
+        if (curr->q3 != nullptr){
+            bfs_queue.push(curr->q3);
+        }
+        if (curr->q4 != nullptr){
+            bfs_queue.push(curr->q4);
+        }
+    }
+    std::cout << "Testing STACK = 21" << std::endl;
+    std::cout << iter_stack.size() << std::endl;
+    std::cout << "Testing QUEUE = 0" << std::endl;
+    std::cout << bfs_queue.size() << std::endl;
+
+    for (int i=0; i < iheight; i++){
+        QTNode* level[2^i][2^i];
+    }
+    int level0 = 0;
+}
+
 
 /** Get height recuersively */
 int Quadtree::getHeight(QTNode* n, int depth) {
